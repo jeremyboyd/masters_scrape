@@ -1,0 +1,3 @@
+*.Rproj
+.secrets
+renv
