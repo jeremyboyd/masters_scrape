@@ -11,11 +11,8 @@ library(jsonlite)
 gs4_auth(email = "kenyonboyd@gmail.com",
          cache = ".secrets")
 
-# Presumably once the tournament starts there will be a scores.json to download.
-# Will need to check this at tee off on Thursday. Until that happens I can work
-# with the scores.json fro 2024.
+# URL for 2025 leaderboard data
 url <- "https://www.masters.com/en_US/scores/feeds/2025/scores.json"
-# url <- "https://www.masters.com/en_US/scores/feeds/2024/scores.json"
 
 # Download leaderboard data every 60 seconds, format, and write to sheet
 while (TRUE) {
@@ -26,10 +23,10 @@ while (TRUE) {
     # Default user-agent for httr2 indicates that request is coming from
     # httr2/curl/libcurl and not a browser. This gets blocked by the Masters site.
     # So pretend to be a browser using HTTP/1.1. HTTP/1.1 is simpler, doesn't look
-    # like anything out of the ordinary and so gets accepted by masters.
+    # like anything out of the ordinary and so gets accepted by Masters.
     resp <- request(url) |>
         req_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36") |>
-        req_options(http_version = 1.1) |>  # Force HTTP/1.1
+        req_options(http_version = 1.1) |>
         req_perform()
     
     # Extract data
