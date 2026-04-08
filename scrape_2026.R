@@ -3,7 +3,11 @@
 # scraping, download the json file that feeds into the leaderboard.
 
 # Authorize access to Google sheets
-gs4_auth(email = "kenyonboyd@gmail.com", cache = ".secrets")
+gs4_auth(
+  email = "kenyonboyd@gmail.com",
+  cache = ".secrets",
+  scopes = "https://www.googleapis.com/auth/spreadsheets"
+)
 
 # URL for 2026 leaderboard data
 url <- "https://www.masters.com/en_US/scores/feeds/2026/scores.json"
