@@ -28,6 +28,14 @@ while (TRUE) {
     req_options(http_version = 1.1) |>
     req_perform()
 
+  # Consider building in automatic back-off in case request fails due to 429: resource exhausted.
+  # request("https://api.example.com/endpoint") |>
+  #   req_retry(
+  #     max_tries = 4,
+  #     is_transient = \(resp) resp_status(resp) == 429
+  #   ) |>
+  #   req_perform()
+
   # Extract data
   data <- resp |> resp_body_json()
 
